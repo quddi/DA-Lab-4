@@ -9,11 +9,11 @@ namespace DA_Lab_4
 {
     public static class DataLoader
     {
-        public static List<double>? LoadValues()
+        public static List<(double x, double y)>? LoadValues()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            openFileDialog.Filter = "Текстові файли (*.txt)|*.txt|Усі файли (*.*)|*.*";
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -32,9 +32,9 @@ namespace DA_Lab_4
             return null;
         }
 
-        private static List<double> ReadNumbersFromFile(string filePath)
+        private static List<(double x, double y)> ReadNumbersFromFile(string filePath)
         {
-            List<double> numbers = new List<double>();
+            var result = new List<(double x, double y)>();
 
             try
             {
@@ -44,15 +44,17 @@ namespace DA_Lab_4
                 {
                     string[] tokens = line.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    foreach (string token in tokens)
-                    {
-                        var modifiedToken = token.Replace('.', ',');
+                    if (tokens.Length != 2)
+                        throw new FileFormatException($"Кожний рядок має містити 2 числа, розділені комою, а містив: {line}");
 
-                        if (double.TryParse(modifiedToken, out double number))
-                            numbers.Add(number);
-                        else
-                            MessageBox.Show($"Помилка при зчитуванні числа: {token}");
-                    }
+                    var modifiedFirstToken = tokens[0].Replace('.', ',');
+                    var modifiedSecondToken = tokens[1].Replace('.', ',');
+
+                    if (double.TryParse(modifiedFirstToken, out double x) && 
+                        double.TryParse(modifiedSecondToken, out double y))
+                        result.Add((x, y));
+                    else
+                        MessageBox.Show($"Помилка при зчитуванні числа!");
                 }
             }
             catch (Exception ex)
@@ -60,7 +62,7 @@ namespace DA_Lab_4
                 MessageBox.Show($"Помилка при зчитуванні файлу: {ex.Message}");
             }
 
-            return numbers;
+            return result;
         }
     }
 }
