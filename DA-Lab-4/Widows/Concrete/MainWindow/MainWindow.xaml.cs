@@ -8,7 +8,5 @@ namespace DA_Lab_4
         {
             InitializeComponent();
         }
-
-        
     }
 }
