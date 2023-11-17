@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\alemk\source\repos\DA-Lab-4\DA-Lab-4\App.xaml
-1-1529261602
+2-1185511301
 
-10-871566465
+131937707324
 198-759771931
-Widows\Concrete\MainWindow\MainWindow.xaml;
+Widows\Concrete\DependentDataWindow\DependentDataWindow.xaml;Widows\Concrete\MainWindow\MainWindow.xaml;
 
 False
 

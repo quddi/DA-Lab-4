@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 
 namespace DA_Lab_4
 {
@@ -57,7 +56,7 @@ namespace DA_Lab_4
             return value.ToString("0.0000");
         }
 
-        public static bool IsEqual(this double a, double b) => Math.Abs(a - b) < DataContainer.Tolerance;
+        public static bool IsEqual(this double a, double b) => Math.Abs(a - b) < Constants.Tolerance;
 
         public static bool IsLessOrEqual(this double a, double b) => a < b || a.IsEqual(b);
     }

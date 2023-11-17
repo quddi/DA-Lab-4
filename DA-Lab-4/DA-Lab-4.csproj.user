@@ -7,6 +7,14 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Widows\Concrete\DependentDataWindow\DependentDataWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Widows\Concrete\DependentDataWindow\DependentDataWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Widows\Concrete\MainWindow\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
