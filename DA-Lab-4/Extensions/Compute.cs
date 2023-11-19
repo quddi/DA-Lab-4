@@ -95,6 +95,34 @@ namespace DA_Lab_4
             return Math.Sqrt(-2 * Math.Log(a));
         }
 
+        public static double MeanSquaredStandardDeviation(double S, int N)
+        {
+            return S / Math.Sqrt(N);
+        }
+
+        public static double SampleMeanSquaredStandardDeviation(double S, int N)
+        {
+            return S / Math.Sqrt(2.0 * N);
+        }
+
+        public static double SkewnessCoefficientRootMeanSquareDeviation(int N)
+        {
+            return Math.Sqrt(
+            (6.0 * N * (N - 1))
+            /
+            (((double)N - 2) * (N + 1) * (N + 3))
+            );
+        }
+
+        public static double KurtosisCoefficientRootMeanSquareDeviation(int N)
+        {
+            return Math.Sqrt(
+            (24.0 * N * (N - 1) * (N - 1))
+            /
+            (((double)N - 3) * (N - 2) * (N + 3) * (N + 5))
+            );
+        }
+
         public static double G1(double uP)
         {
             return (uP * uP * uP + uP) / 4;
