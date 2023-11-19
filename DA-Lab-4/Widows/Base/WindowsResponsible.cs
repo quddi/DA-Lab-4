@@ -16,13 +16,18 @@ namespace DA_Lab_4
 
         public static Window ShowWindow<T>() where T : Window, new()
         {
-            AddWindow(new T());
+            var window = new T();
 
-            var key = typeof(T);
+            ShowWindow(window);
 
-            _activeWindows[key].Show();
+            return window;
+        }
 
-            return _activeWindows[key];
+        public static void ShowWindow(Window window)
+        {
+            AddWindow(window);
+
+            _activeWindows[window.GetType()].Show();
         }
 
         public static void HideWindow<T>() where T : Window

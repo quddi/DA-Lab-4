@@ -14,9 +14,7 @@ namespace DA_Lab_4
                 return;
             }
 
-            DependentDataContainer.SetDatas(datas.Value);
-
-            WindowsResponsible.ShowWindow<DependentDataWindow>();
+            WindowsResponsible.ShowWindow(new DependentDataWindow(datas.Value));
         }
 
         private void LoadIndependentDatasetButtonClick(object sender, RoutedEventArgs e)
@@ -29,7 +27,7 @@ namespace DA_Lab_4
                 return;
             }
 
-            IndependentDataContainer.SetDatas(datas.Value);
+            //IndependentDataContainer.SetDatas(datas.Value);
         }
     }
 }

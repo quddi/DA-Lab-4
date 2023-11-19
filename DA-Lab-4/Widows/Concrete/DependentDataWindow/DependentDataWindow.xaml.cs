@@ -1,19 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace DA_Lab_4
 {
     public partial class DependentDataWindow : Window
     {
-        public DependentDataWindow()
+        private DependentDataContainer _dataContainer;
+
+        public DependentDataWindow((List<double> X, List<double> Y) datas)
         {
             InitializeComponent();
+
+            _dataContainer = new DependentDataContainer(datas);
         }
 
         private void CheckMeansEqualityButtonClick(object sender, RoutedEventArgs e)
         {
-            var tTest = DependentDataContainer.DifferencesPairedTTest;
-            var studentQuantile = DependentDataContainer.DifferencesStudentQuantile;
+            var tTest = _dataContainer.PairedTTest;
+            var studentQuantile = _dataContainer.DifferencesDataContainer.StudentQuantile;
 
             var tTestAbs = Math.Abs(tTest);
 
@@ -29,8 +34,8 @@ namespace DA_Lab_4
 
         private void CheckVariancesEqualityButton_Click(object sender, RoutedEventArgs e)
         {
-            var fTest = DependentDataContainer.DifferencesFTest;
-            var fisherQuantile = DependentDataContainer.DifferencesStudentQuantile;
+            var fTest = _dataContainer.FTest;
+            var fisherQuantile = _dataContainer.DifferencesDataContainer.StudentQuantile;
 
             var fTestAbs = Math.Abs(fTest);
 
