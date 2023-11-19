@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DA_Lab_4.Widows.Concrete.DatasWindow;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -7,6 +8,10 @@ namespace DA_Lab_4
     public partial class DependentDataWindow : Window
     {
         private DependentDataContainer _dataContainer;
+
+        private DatasWindow? _xDatasWindow;
+        private DatasWindow? _yDatasWindow;
+        private DatasWindow? _differencesDatasWindow;
 
         public DependentDataWindow((List<double> X, List<double> Y) datas)
         {
@@ -47,6 +52,42 @@ namespace DA_Lab_4
             {
                 MessageBox.Show($"Дисперсії відмінні.\n|{fTest}| > {fisherQuantile}");
             }
+        }
+
+        private void ShowXDatasWindowButtonClick(object _, RoutedEventArgs __)
+        {
+            if (_xDatasWindow != null) 
+                return;
+
+            _xDatasWindow = new DatasWindow(_dataContainer.XDataContainer, "Залежні вибірки: Перша вибірка");
+            _xDatasWindow.Show();
+        }
+
+        private void ShowYDatasWindowButtonClick(object _, RoutedEventArgs __)
+        {
+            if (_yDatasWindow != null)
+                return;
+
+            _yDatasWindow = new DatasWindow(_dataContainer.YDataContainer, "Залежні вибірки: Друга вибірка");
+            _yDatasWindow.Show();
+        }
+
+        private void ShowDifferencesDatasWindowButtonClick(object _, RoutedEventArgs __)
+        {
+            if (_differencesDatasWindow != null) 
+                return;
+
+            _differencesDatasWindow = new DatasWindow(_dataContainer.DifferencesDataContainer, "Залежні вибірки: Вибірка різниць");
+            _differencesDatasWindow.Show();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _xDatasWindow?.Close();
+            _yDatasWindow?.Close();
+            _differencesDatasWindow?.Close();
+
+            base.OnClosed(e);
         }
     }
 }

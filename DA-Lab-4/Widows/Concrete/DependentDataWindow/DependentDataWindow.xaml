@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="DependentDataWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="CheckMeansEqualityButton" Content="Перевірити рівність середніх" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="36" Width="206" Click="CheckMeansEqualityButtonClick"/>
-        <Button x:Name="CheckVariancesEqualityButton" Content="Перевірити рівність дисперсій" HorizontalAlignment="Left" Margin="221,10,0,0" VerticalAlignment="Top" Height="36" Width="206" Click="CheckVariancesEqualityButton_Click"/>
+        <Button x:Name="CheckMeansEqualityButton" Content="Перевірити рівність середніх" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="CheckMeansEqualityButtonClick"/>
+        <Button x:Name="CheckVariancesEqualityButton" Content="Перевірити рівність дисперсій" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="CheckVariancesEqualityButton_Click"/>
+        <Button x:Name="ShowXDatasWindowButton" Content="Інформація про першу вибірку" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="ShowXDatasWindowButtonClick"/>
+        <Button x:Name="ShowYDatasWindowButton" Content="Інформація про другу вибірку" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="ShowYDatasWindowButtonClick"/>
+        <Button x:Name="ShowDifferencesDatasWindowButton" Content="Інформація про різницю вибірок" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="ShowDifferencesDatasWindowButtonClick"/>
 
     </Grid>
 </Window>

@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Widows\Concrete\DatasWindow\CharacteristicsBackground.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DTO\Specifics\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Widows\Concrete\DatasWindow\CharacteristicsBackground.png" />
   </ItemGroup>
 
 </Project>

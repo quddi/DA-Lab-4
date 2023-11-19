@@ -53,7 +53,12 @@ namespace DA_Lab_4
 
         public static string ToFormattedString(this double value)
         {
-            return value.ToString("0.0000");
+            return value.ToString("0.000000");
+        }
+
+        public static string ToFormattedString(this (double LeftEdge, double RightEdge) pair)
+        {
+            return $"[{pair.LeftEdge.ToFormattedString()}; {pair.RightEdge.ToFormattedString()}]";
         }
 
         public static bool IsEqual(this double a, double b) => Math.Abs(a - b) < Constants.Tolerance;
