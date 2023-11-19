@@ -32,6 +32,8 @@ namespace DA_Lab_4
         private double? _firstSkewnessCoefficient;
         private double? _firstKurtosisCoefficient;
         private double? _shiftedVariance;
+        private double? _skewnessStatistics;
+        private double? _kurtosisStatistics;
 
         public int ElementsCount
         {
@@ -225,6 +227,28 @@ namespace DA_Lab_4
             }
         }
 
+        public double SkewnessStatistics
+        {
+            get
+            {
+                if (_skewnessStatistics == null)
+                    ComputeSkewnessStatistics();
+
+                return _skewnessStatistics!.Value;
+            }
+        }
+
+        public double KurtosisStatistics
+        {
+            get
+            {
+                if (_kurtosisStatistics == null)
+                    ComputeKurtosisStatistics();
+
+                return _kurtosisStatistics!.Value;
+            }
+        }
+
         public required List<double> Datas { get; init; }
 
         public DataContainer() { }
@@ -341,6 +365,15 @@ namespace DA_Lab_4
             _shiftedVariance = Variance * (ElementsCount - 1) / ElementsCount;
         }
 
+        private void ComputeSkewnessStatistics()
+        {
+            _skewnessStatistics = SecondSkewnessCoefficient / SecondKurtosisCoefficientSigma;
+        }
+
+        private void ComputeKurtosisStatistics()
+        {
+            _kurtosisStatistics = SecondKurtosisCoefficient / SecondKurtosisCoefficientSigma;
+        }
         #endregion
     }
 }

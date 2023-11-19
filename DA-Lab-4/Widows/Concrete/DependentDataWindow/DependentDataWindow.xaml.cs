@@ -61,6 +61,7 @@ namespace DA_Lab_4
 
             _xDatasWindow = new DatasWindow(_dataContainer.XDataContainer, "Залежні вибірки: Перша вибірка");
             _xDatasWindow.Show();
+            _xDatasWindow.Closed += (_, __) => _xDatasWindow = null;
         }
 
         private void ShowYDatasWindowButtonClick(object _, RoutedEventArgs __)
@@ -70,6 +71,7 @@ namespace DA_Lab_4
 
             _yDatasWindow = new DatasWindow(_dataContainer.YDataContainer, "Залежні вибірки: Друга вибірка");
             _yDatasWindow.Show();
+            _yDatasWindow.Closed += (_, __) => _yDatasWindow = null;
         }
 
         private void ShowDifferencesDatasWindowButtonClick(object _, RoutedEventArgs __)
@@ -79,6 +81,7 @@ namespace DA_Lab_4
 
             _differencesDatasWindow = new DatasWindow(_dataContainer.DifferencesDataContainer, "Залежні вибірки: Вибірка різниць");
             _differencesDatasWindow.Show();
+            _differencesDatasWindow.Closed += (_, __) => _differencesDatasWindow = null;
         }
 
         protected override void OnClosed(EventArgs e)
