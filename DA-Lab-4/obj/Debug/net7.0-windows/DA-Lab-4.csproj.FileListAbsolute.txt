@@ -22,3 +22,5 @@ C:\Users\alemk\source\repos\DA-Lab-4\DA-Lab-4\obj\Debug\net7.0-windows\Widows\Co
 C:\Users\alemk\source\repos\DA-Lab-4\DA-Lab-4\obj\Debug\net7.0-windows\Widows\Concrete\DependentDataWindow\DependentDataWindow.baml
 C:\Users\alemk\source\repos\DA-Lab-4\DA-Lab-4\obj\Debug\net7.0-windows\Widows\Concrete\DatasWindow\DatasWindow.g.cs
 C:\Users\alemk\source\repos\DA-Lab-4\DA-Lab-4\obj\Debug\net7.0-windows\Widows\Concrete\DatasWindow\DatasWindow.baml
+C:\Users\alemk\source\repos\DA-Lab-4\DA-Lab-4\obj\Debug\net7.0-windows\Widows\Concrete\IndependentDataWindow\IndependentDataWindow.g.cs
+C:\Users\alemk\source\repos\DA-Lab-4\DA-Lab-4\obj\Debug\net7.0-windows\Widows\Concrete\IndependentDataWindow\IndependentDataWindow.baml

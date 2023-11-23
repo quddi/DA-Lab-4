@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace DA_Lab_4.Widows.Concrete.DatasWindow
+namespace DA_Lab_4
 {
     public partial class DatasWindow : Window
     {
@@ -87,8 +87,8 @@ namespace DA_Lab_4.Widows.Concrete.DatasWindow
             var normalDistributionIdentified = normalDistributionIdentifiedBySkewness && normalDistributionIdentifiedByKurtosis;
 
             NormalDistributionIdentificationBackground.Fill = new SolidColorBrush(normalDistributionIdentified 
-                ? Constants.IdentifiedColor
-                : Constants.NotIdentifiedColor);
+                ? Constants.OkColor
+                : Constants.NotOkColor);
 
             NormalDistributionIdentificationText.Content = $"Ідентифікація нормального розподілу: {(normalDistributionIdentified ? "" : "не ")} ідентифікується.";
         }

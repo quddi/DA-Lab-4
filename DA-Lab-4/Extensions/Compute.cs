@@ -142,5 +142,37 @@ namespace DA_Lab_4
         {
             return (79 * Math.Pow(uP, 9) + 779 * Math.Pow(uP, 7) + 1482 * Math.Pow(uP, 5) - 1920 * Math.Pow(uP, 3) - 945 * uP) / 92160;
         }
+
+        public static Dictionary<double, double> Ranks(List<double> values)
+        {
+            var orderedValues = values.Order().ToList();
+
+            var previous = orderedValues[0];
+            var positions = new List<int>();
+
+            var result = new Dictionary<double, double>();
+
+            for (int i = 0; i < orderedValues.Count; i++)
+            {
+                var current = orderedValues[i];
+
+                if (i == 0 || current == previous)
+                {
+                    positions.Add(i + 1);
+                    continue;
+                }
+
+                result.Add(previous, positions.Average());
+                positions.Clear();
+                positions.Add(i + 1);
+
+                previous = current;
+
+                if (i + 1 == orderedValues.Count)
+                    result.Add(previous, positions.Average());
+            }
+
+            return result;
+        }
     }
 }

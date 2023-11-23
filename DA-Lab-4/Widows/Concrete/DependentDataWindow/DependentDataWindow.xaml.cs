@@ -1,4 +1,4 @@
-﻿using DA_Lab_4.Widows.Concrete.DatasWindow;
+﻿using DA_Lab_4;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -40,7 +40,7 @@ namespace DA_Lab_4
         private void CheckVariancesEqualityButton_Click(object sender, RoutedEventArgs e)
         {
             var fTest = _dataContainer.FTest;
-            var fisherQuantile = _dataContainer.DifferencesDataContainer.StudentQuantile;
+            var fisherQuantile = _dataContainer.FisherQuantile;
 
             var fTestAbs = Math.Abs(fTest);
 

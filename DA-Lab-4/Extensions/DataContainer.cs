@@ -28,12 +28,16 @@ namespace DA_Lab_4
         private (double LeftEdge, double RightEdge)? _secondKurtosisCoefficientTrustInterval;
 
         private double? _variance;
+        private double? _normalDistributionQuantile;
         private double? _studentQuantile;
         private double? _firstSkewnessCoefficient;
         private double? _firstKurtosisCoefficient;
         private double? _shiftedVariance;
         private double? _skewnessStatistics;
         private double? _kurtosisStatistics;
+        private double? _rankingStatistics;
+        private bool? _isNormalDistributed;
+        private Dictionary<double, double>? _ranks;
 
         public int ElementsCount
         {
@@ -187,6 +191,17 @@ namespace DA_Lab_4
             }
         }
 
+        public double NormalDistributionQuantile
+        {
+            get
+            {
+                if (_normalDistributionQuantile == null)
+                    ComputeNormalDistributionQuantile();
+
+                return _normalDistributionQuantile!.Value;
+            }
+        }
+
         public double StudentQuantile
         {
             get
@@ -249,6 +264,34 @@ namespace DA_Lab_4
             }
         }
 
+        public bool IsNormalDistributed
+        {
+            get
+            {
+                if (_isNormalDistributed == null)
+                    ComputeIsNormalDistributed();
+
+                return _isNormalDistributed!.Value;
+            }
+        }
+
+        public double? RankingStatistics
+        {
+            get => _rankingStatistics;
+            set => _rankingStatistics = value;
+        }
+
+        public Dictionary<double, double> Ranks
+        {
+            get
+            {
+                if (_ranks == null)
+                    ComputeRanks();
+
+                return _ranks!;
+            }
+        }
+
         public required List<double> Datas { get; init; }
 
         public DataContainer() { }
@@ -268,22 +311,23 @@ namespace DA_Lab_4
             _meanTrustInterval = (Mean - StudentQuantile * MeanSigma, Mean + StudentQuantile * MeanSigma);
         }
 
+        private void ComputeNormalDistributionQuantile()
+        {
+            _normalDistributionQuantile = Compute.NormalDistributionQuantile(1 - Constants.Alpha / 2);
+        }
+
         private void ComputeMedian()
         {
-            var rowDatas = Datas?
-                .OrderBy(value => value)?
-                .ToList();
+            var orderedValues = Datas?.Order()?.ToList()!;
 
             _median = ElementsCount % 2 == 0
-                ? (rowDatas[ElementsCount / 2] + rowDatas[ElementsCount / 2 - 1]) / 2f
-                : rowDatas[ElementsCount / 2];
+                ? (orderedValues[ElementsCount / 2] + orderedValues[ElementsCount / 2 - 1]) / 2f
+                : orderedValues[ElementsCount / 2];
 
-            var uP = Compute.NormalDistributionQuantile(1 - Constants.Alpha / 2);
+            var j = (int)(ElementsCount / 2 - NormalDistributionQuantile * Math.Sqrt(ElementsCount) / 2);
+            var k = (int)(ElementsCount / 2 + 1 + NormalDistributionQuantile * Math.Sqrt(ElementsCount) / 2);
 
-            var j = (int)(ElementsCount / 2 - uP * Math.Sqrt(ElementsCount) / 2);
-            var k = (int)(ElementsCount / 2 + 1 + uP * Math.Sqrt(ElementsCount) / 2);
-
-            _medianTrustInterval = (rowDatas[j], rowDatas[k]);
+            _medianTrustInterval = (orderedValues[j], orderedValues[k]);
         }
 
         private void ComputeStandardDeviation()
@@ -373,6 +417,18 @@ namespace DA_Lab_4
         private void ComputeKurtosisStatistics()
         {
             _kurtosisStatistics = SecondKurtosisCoefficient / SecondKurtosisCoefficientSigma;
+        }
+
+        private void ComputeRanks()
+        {
+            _ranks = Compute.Ranks(Datas);
+        }
+
+        private void ComputeIsNormalDistributed()
+        {
+            _isNormalDistributed =
+                Math.Abs(SkewnessStatistics) < StudentQuantile &&
+                Math.Abs(KurtosisStatistics) < StudentQuantile;
         }
         #endregion
     }

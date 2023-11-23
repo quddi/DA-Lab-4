@@ -64,5 +64,41 @@ namespace DA_Lab_4
         public static bool IsEqual(this double a, double b) => Math.Abs(a - b) < Constants.Tolerance;
 
         public static bool IsLessOrEqual(this double a, double b) => a < b || a.IsEqual(b);
+
+        public static bool HasRepetitiveElement<T>(this IEnumerable<T> values, T value) where T : IComparable
+        {
+            return values.Count(x => x.CompareTo(value) == 0) > 1;
+        }
+
+        public static Dictionary<T, List<int>> ElementsIndexes<T>(this IList<T> sortedList, IList<T> values) where T : IComparable
+        {
+            var result = new Dictionary<T, List<int>>();
+            var list = new List<int>();
+
+            var valuesIndex = 0;
+
+            for (var i = 0; i < sortedList.Count; i++)
+            {
+                var currentElement = sortedList[i];
+
+                if (currentElement.CompareTo(values[valuesIndex]) == 0)
+                    list.Add(i + 1);
+
+                if (currentElement.CompareTo(values[valuesIndex]) > 0 || i + 1 == sortedList.Count)
+                {
+                    result.Add(values[valuesIndex], list);
+                    list = new List<int>();
+
+                    valuesIndex++;
+
+                    if (valuesIndex == values.Count)
+                        return result;
+
+                    i--;
+                }
+            }
+
+            return result;
+        }
     }
 }

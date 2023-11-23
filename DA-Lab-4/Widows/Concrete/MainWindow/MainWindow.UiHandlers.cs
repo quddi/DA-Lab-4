@@ -27,7 +27,7 @@ namespace DA_Lab_4
                 return;
             }
 
-            //IndependentDataContainer.SetDatas(datas.Value);
+            WindowsResponsible.ShowWindow(new IndependentDataWindow(datas.Value));
         }
     }
 }
