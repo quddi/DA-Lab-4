@@ -33,6 +33,9 @@ namespace DA_Lab_4
 
             VDVCriteriaCheckbox.IsHitTestVisible = false;
             VDVCriteriaCheckbox.Focusable = false;
+
+            WelchCorrectionCheckbox.IsHitTestVisible = false;
+            WelchCorrectionCheckbox.Focusable = false;
         }
 
         private void FillInfo()

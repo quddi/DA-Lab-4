@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DA_Lab_4"
         mc:Ignorable="d"
-        Title="DatasWindow" Height="360" Width="1101" ResizeMode="NoResize">
-    <Grid HorizontalAlignment="Center" Width="1100" Height="327" VerticalAlignment="Top">
+        Title="DatasWindow" Height="392" Width="1101" ResizeMode="NoResize">
+    <Grid HorizontalAlignment="Center" Width="1100" Height="376" VerticalAlignment="Center">
         <Image Margin="250,4,0,0" Source="/Widows/Concrete/DatasWindow/CharacteristicsBackground.png" Stretch="Fill" Height="238" VerticalAlignment="Top" HorizontalAlignment="Left" Width="840"/>
-        <DataGrid x:Name="ValuesDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,855,8">
+        <DataGrid x:Name="ValuesDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,855,30">
             <DataGrid.Columns>
                 <DataGridTextColumn Foreground="Black" Header="Значення" Width="*"/>
             </DataGrid.Columns>
@@ -24,12 +24,13 @@
         <TextBox x:Name="KurtosisCoefficientTextBox" HorizontalAlignment="Left" Margin="681,205,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="109" Height="33" TextAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox x:Name="KurtosisCoefficientIntervalTextBox" HorizontalAlignment="Left" Margin="789,205,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="298" Height="33" TextAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox HorizontalAlignment="Left" Height="0" Margin="432,280,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Rectangle x:Name="NormalDistributionIdentificationBackground" HorizontalAlignment="Left" Height="76" Margin="256,243,0,0" Stroke="Black" VerticalAlignment="Top" Width="831" Fill="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-        <Label x:Name="NormalDistributionIdentificationText" Content="Ідентифікація нормального розподілу" HorizontalAlignment="Left" Margin="264,241,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Rectangle HorizontalAlignment="Left" Height="40" Margin="264,273,0,0" VerticalAlignment="Top" Width="392" Fill="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"/>
-        <CheckBox x:Name="NormalDistributionBySkewnessCheckbox" Content="За коефіцієнтом ексцесу" HorizontalAlignment="Left" Margin="273,279,0,0" VerticalAlignment="Top" FontSize="18" Height="28" Width="238" VerticalContentAlignment="Center"/>
-        <Rectangle HorizontalAlignment="Left" Height="40" Margin="687,273,0,0" VerticalAlignment="Top" Width="392" Fill="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"/>
-        <CheckBox x:Name="NormalDistributionByKurtosisCheckbox" Content="За коефіцієнтом асиметрії" HorizontalAlignment="Left" Margin="696,279,0,0" VerticalAlignment="Top" FontSize="18" Height="28" Width="238" VerticalContentAlignment="Center"/>
+        <Rectangle x:Name="NormalDistributionIdentificationBackground" HorizontalAlignment="Left" Height="103" Margin="256,243,0,0" Stroke="Black" VerticalAlignment="Top" Width="831" Fill="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+        <Label x:Name="NormalDistributionIdentificationText" Content="Ідентифікація нормального розподілу: ідентифікується" HorizontalAlignment="Left" Margin="264,249,0,0" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="43" Width="520"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="264,299,0,0" VerticalAlignment="Top" Width="406" Fill="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"/>
+        <CheckBox x:Name="NormalDistributionBySkewnessCheckbox" Content="За коефіцієнтом ексцесу" HorizontalAlignment="Left" Margin="273,305,0,0" VerticalAlignment="Top" FontSize="18" Height="28" Width="397" VerticalContentAlignment="Center"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="675,299,0,0" VerticalAlignment="Top" Width="403" Fill="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"/>
+        <CheckBox x:Name="NormalDistributionByKurtosisCheckbox" Content="За коефіцієнтом асиметрії" HorizontalAlignment="Left" Margin="682,305,0,0" VerticalAlignment="Top" FontSize="18" Height="28" Width="396" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="StudentQuantileText" HorizontalAlignment="Left" Margin="789,254,0,0" TextWrapping="Wrap" Text="u=3.123125441432342342" VerticalAlignment="Top" Width="289" Height="35" BorderBrush="{x:Null}" Background="#FFFFFFE1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" IsHitTestVisible="False" Focusable="False"/>
 
     </Grid>
 </Window>

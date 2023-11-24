@@ -286,26 +286,25 @@ namespace DA_Lab_4
                 foreach (var valuePairIndexes in groupedValuesIndexes)
                 {
                     var q = valuePairIndexes.Value.Sum(index =>
-                        Compute.NormalDistributionQuantile(((double)index) / ElementsCount + 1));
+                        Compute.NormalDistributionQuantile(((double)index) / (ElementsCount + 1)));
 
                     qSum += q * XDataContainer.Datas.Count(value => value.IsEqual(valuePairIndexes.Key))
                            / valuePairIndexes.Value.Count;
                 }
             }
             
-
             _xRankedStatistics = XRankedStrokeStatistics + qSum;
         }
 
         private void ComputeXDParameter()
         {
-            var multiplier = (XDataContainer.ElementsCount * YDataContainer.ElementsCount) / (ElementsCount * (ElementsCount - 1));
+            var multiplier = ((double)XDataContainer.ElementsCount * YDataContainer.ElementsCount) / (ElementsCount * (ElementsCount - 1));
 
             var sum = 0D;
 
             for (int i = 0; i < ElementsCount; i++)
             {
-                var quantile = Compute.NormalDistributionQuantile((i + 1) / (ElementsCount + 1));
+                var quantile = Compute.NormalDistributionQuantile(((double)i + 1) / (ElementsCount + 1));
 
                 sum += quantile * quantile;
             }

@@ -21,8 +21,8 @@
         <Rectangle x:Name="MeansEqualityBackground" HorizontalAlignment="Left" Height="54" Margin="210,149,0,0" VerticalAlignment="Top" Width="167" Fill="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
         <TextBlock x:Name="MeansEqualityValuesText" HorizontalAlignment="Left" Margin="217,158,0,0" TextWrapping="Wrap" Text="|-1.135432| &lt; 16.189932 " VerticalAlignment="Top" TextAlignment="Center"/>
         <CheckBox x:Name="WelchCorrectionCheckbox" Content="З поправою Уелча" HorizontalAlignment="Left" Margin="217,180,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="EqualityTypeText" HorizontalAlignment="Left" Margin="318,12,0,0" TextWrapping="Wrap" Text="Вибірки розподілені нормально, тому застосовано критерій перевірки середніх і дисперсій" VerticalAlignment="Top" Width="350" Background="{x:Null}" BorderBrush="{x:Null}" Height="77" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="VDVCriteriaValuesText" HorizontalAlignment="Left" Margin="409,162,0,0" TextWrapping="Wrap" Text="|-1.135432| &lt; 16.189932 " VerticalAlignment="Top" Width="344" Background="{x:Null}" Height="28" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="EqualityTypeText" HorizontalAlignment="Left" Margin="318,12,0,0" TextWrapping="Wrap" Text="Вибірки розподілені нормально, тому застосовано критерій перевірки середніх і дисперсій" VerticalAlignment="Top" Width="350" Background="{x:Null}" BorderBrush="{x:Null}" Height="77" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Focusable="False" IsHitTestVisible="False"/>
+        <TextBox x:Name="VDVCriteriaValuesText" HorizontalAlignment="Left" Margin="409,162,0,0" TextWrapping="Wrap" Text="|-1.135432| &lt; 16.189932 " VerticalAlignment="Top" Width="344" Background="{x:Null}" Height="28" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsHitTestVisible="False" Focusable="False"/>
 
     </Grid>
 </Window>
