@@ -10,6 +10,9 @@ namespace DA_Lab_4
         private double? _fTest;
         private double? _freedomDegree;
         private double? _fisherQuantile;
+        private List<double>? _vilcocsonDifferences;
+        private double? _vilcocsonSignedRankTest;
+        private double? _vilcocsonStatistics;
 
         public double PairedTTest
         {
@@ -55,7 +58,42 @@ namespace DA_Lab_4
             }
         }
 
+        public List<double> VilcocsonDifferences 
+        {
+            get
+            {
+                if (_vilcocsonDifferences == null)
+                    ComputeVilcocsonDifferences();
+
+                return _vilcocsonDifferences!;
+            }
+        }
+
+        public double VilcocsonSignedRankTest
+        {
+            get
+            {
+                if (_vilcocsonSignedRankTest == null)
+                    ComputeVilcocsonSignedRankTest();
+
+                return _vilcocsonSignedRankTest!.Value;
+            }
+        }
+
+        public double VilcocsonStatistics
+        {
+            get
+            {
+                if (_vilcocsonStatistics == null)
+                    ComputeVilcocsonStatistics();
+
+                return _vilcocsonStatistics!.Value;
+            }
+        }
+
         public double ElementsCount => XDataContainer.ElementsCount;
+
+        public bool AreNormalDistributed => XDataContainer.IsNormalDistributed && YDataContainer.IsNormalDistributed;
 
         public DataContainer XDataContainer { get; private set; }
         public DataContainer YDataContainer { get; private set; }
@@ -103,6 +141,47 @@ namespace DA_Lab_4
         private void ComputeFisherQuantile()
         {
             _fisherQuantile = Compute.FisherDistributionQuantile(1D - Constants.Alpha, FreedomDegree, FreedomDegree);
+        }
+
+        private void ComputeVilcocsonDifferences()
+        {
+            _vilcocsonDifferences = DifferencesDataContainer.Datas
+                .Except(new List<double> { 0D })
+                .ToList();
+        }
+
+        private void ComputeVilcocsonSignedRankTest()
+        {
+            if (VilcocsonDifferences.Count == 0)
+            {
+                _vilcocsonSignedRankTest = 0;
+                return;
+            }
+
+            var fixedDifferencesAbs = VilcocsonDifferences
+                .Select(Math.Abs)
+                .ToList();
+
+            var ranks = Compute.Ranks(fixedDifferencesAbs);
+
+            var sum = 0D;
+
+            for (int i = 0; i < VilcocsonDifferences.Count; i++)
+                if (VilcocsonDifferences[i] > 0D)
+                    sum += ranks[fixedDifferencesAbs[i]];
+        
+            _vilcocsonSignedRankTest = sum;
+        }
+
+        private void ComputeVilcocsonStatistics()
+        {
+            var n = VilcocsonDifferences.Count;
+
+            var e = n * (n + 1) / 4D;
+
+            var d = n * (n + 1) * (2 * n + 1) / 24D;
+
+            _vilcocsonStatistics = (VilcocsonSignedRankTest - e) / Math.Sqrt(d);
         }
         #endregion
     }

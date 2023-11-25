@@ -84,8 +84,8 @@ namespace DA_Lab_4
                 VDVCriteriaBackground.Fill = new SolidColorBrush(Constants.ActiveColor);
 
                 //Set info
-                var vdvFits = Math.Abs(_dataContainer.XUValue) < _dataContainer.XDataContainer.NormalDistributionQuantile;
-                VDVCriteriaValuesText.Text = $"|{_dataContainer.XUValue}| < {_dataContainer.XDataContainer.NormalDistributionQuantile}";
+                var vdvFits = Math.Abs(_dataContainer.XUValue) < Constants.NormalDistributionQuantile;
+                VDVCriteriaValuesText.Text = $"|{_dataContainer.XUValue}| < {Constants.NormalDistributionQuantile}";
                 VDVCriteriaBackground.Fill = new SolidColorBrush(vdvFits ? Constants.OkColor : Constants.NotOkColor);
                 VDVCriteriaCheckbox.IsChecked = vdvFits;
             }

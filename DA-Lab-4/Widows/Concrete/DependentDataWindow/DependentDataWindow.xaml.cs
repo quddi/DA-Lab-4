@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 
 namespace DA_Lab_4
 {
@@ -18,39 +19,77 @@ namespace DA_Lab_4
             InitializeComponent();
 
             _dataContainer = new DependentDataContainer(datas);
+
+            Prepare();
+
+            FillInfo();
         }
 
-        private void CheckMeansEqualityButtonClick(object sender, RoutedEventArgs e)
+        private void Prepare()
         {
-            var tTest = _dataContainer.PairedTTest;
-            var studentQuantile = _dataContainer.DifferencesDataContainer.StudentQuantile;
+            MeansEqualityCheckbox.IsHitTestVisible = false;
+            MeansEqualityCheckbox.Focusable = false;
 
-            var tTestAbs = Math.Abs(tTest);
+            VariancesEqualityCheckbox.IsHitTestVisible = false;
+            VariancesEqualityCheckbox.Focusable = false;
 
-            if (tTestAbs.IsLessOrEqual(studentQuantile))
+            VilcocsonCriteriaCheckbox.IsHitTestVisible = false;
+            VilcocsonCriteriaCheckbox.Focusable = false;
+
+            WelchCorrectionCheckbox.IsHitTestVisible = false;
+            WelchCorrectionCheckbox.Focusable = false;
+        }
+
+        private void FillInfo()
+        {
+            if (_dataContainer.AreNormalDistributed)
             {
-                MessageBox.Show($"Немає підстав відхиляти гіпотезу про рівність середніх значень сукупностей.\n|{tTest}| <= {studentQuantile}");
+                //Set title
+                EqualityTypeText.Text = "Вибірки нормально розподілені, отже до них було застосовано параметричні критерії";
+
+                //Set VDV panel inactive
+                VilcocsonPanelBackground.Fill = new SolidColorBrush(Constants.InactiveColor);
+                VilcocsonPanelBackground.Fill = new SolidColorBrush(Constants.InactiveColor);
+                VilcocsonCriteriaValuesText.Text = $"-";
+
+                //Set mean and variance panel active
+                MeanVariancePanelBackground.Fill = new SolidColorBrush(Constants.ActiveColor);
+
+                //Set info
+                var variancesFits = Math.Abs(_dataContainer.FTest) < _dataContainer.FisherQuantile;
+                VariancesEqualityValuesText.Text = $"|{_dataContainer.FTest.ToFormattedString()}| < {_dataContainer.FisherQuantile.ToFormattedString()}";
+                VariancesEqualityBackground.Fill = new SolidColorBrush(variancesFits ? Constants.OkColor : Constants.NotOkColor);
+                VariancesEqualityCheckbox.IsChecked = variancesFits;
+
+                var test = _dataContainer.PairedTTest;
+
+                var meanFits = Math.Abs(test).IsLessOrEqual(_dataContainer.DifferencesDataContainer.StudentQuantile);
+                MeansEqualityValuesText.Text = $"|{test.ToFormattedString()}| < {_dataContainer.DifferencesDataContainer.StudentQuantile.ToFormattedString()}";
+                MeansEqualityBackground.Fill = new SolidColorBrush(meanFits ? Constants.OkColor : Constants.NotOkColor);
+                MeansEqualityCheckbox.IsChecked = meanFits;
             }
             else
             {
-                MessageBox.Show($"Середні значення істотно відрізняються.\n|{tTest}| > {studentQuantile}");
-            }
-        }
+                //Set title
+                EqualityTypeText.Text = "Вибірки не розподілені нормально, отже до них було застосовано критерій знакових рангів Вілкоксона";
 
-        private void CheckVariancesEqualityButton_Click(object sender, RoutedEventArgs e)
-        {
-            var fTest = _dataContainer.FTest;
-            var fisherQuantile = _dataContainer.FisherQuantile;
+                //Set mean and variance panel inactive
+                MeanVariancePanelBackground.Fill = new SolidColorBrush(Constants.InactiveColor);
+                VariancesEqualityValuesText.Text = $"-";
+                VariancesEqualityBackground.Fill = new SolidColorBrush(Constants.InactiveColor);
+                MeansEqualityValuesText.Text = $"-";
+                MeansEqualityBackground.Fill = new SolidColorBrush(Constants.InactiveColor);
 
-            var fTestAbs = Math.Abs(fTest);
+                //Set VDV panel active
+                VilcocsonPanelBackground.Fill = new SolidColorBrush(Constants.ActiveColor);
 
-            if (fTestAbs.IsLessOrEqual(fisherQuantile))
-            {
-                MessageBox.Show($"Дисперсії генеральних сукупностей, з яких вилучено вибірки, збігаються.\n|{fTest}| <= {fisherQuantile}");
-            }
-            else
-            {
-                MessageBox.Show($"Дисперсії відмінні.\n|{fTest}| > {fisherQuantile}");
+                //TODO: Set info
+                var vilcocsonCriteriaFits = _dataContainer.VilcocsonDifferences.Count == 0 || Math.Abs(_dataContainer.VilcocsonStatistics) < Constants.NormalDistributionQuantile;
+                VilcocsonCriteriaValuesText.Text = _dataContainer.VilcocsonDifferences.Count == 0 
+                    ? "Були відсутні різниці відмінні від нуля, отже вибірки однорідні!" 
+                    : $"|{_dataContainer.VilcocsonStatistics}| < {Constants.NormalDistributionQuantile}";
+                VilcocsonPanelBackground.Fill = new SolidColorBrush(vilcocsonCriteriaFits ? Constants.OkColor : Constants.NotOkColor);
+                VilcocsonCriteriaCheckbox.IsChecked = vilcocsonCriteriaFits;
             }
         }
 

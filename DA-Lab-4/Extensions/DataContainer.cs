@@ -28,7 +28,6 @@ namespace DA_Lab_4
         private (double LeftEdge, double RightEdge)? _secondKurtosisCoefficientTrustInterval;
 
         private double? _variance;
-        private double? _normalDistributionQuantile;
         private double? _studentQuantile;
         private double? _firstSkewnessCoefficient;
         private double? _firstKurtosisCoefficient;
@@ -191,17 +190,6 @@ namespace DA_Lab_4
             }
         }
 
-        public double NormalDistributionQuantile
-        {
-            get
-            {
-                if (_normalDistributionQuantile == null)
-                    ComputeNormalDistributionQuantile();
-
-                return _normalDistributionQuantile!.Value;
-            }
-        }
-
         public double StudentQuantile
         {
             get
@@ -311,11 +299,6 @@ namespace DA_Lab_4
             _meanTrustInterval = (Mean - StudentQuantile * MeanSigma, Mean + StudentQuantile * MeanSigma);
         }
 
-        private void ComputeNormalDistributionQuantile()
-        {
-            _normalDistributionQuantile = Compute.NormalDistributionQuantile(1 - Constants.Alpha / 2);
-        }
-
         private void ComputeMedian()
         {
             var orderedValues = Datas?.Order()?.ToList()!;
@@ -324,8 +307,8 @@ namespace DA_Lab_4
                 ? (orderedValues[ElementsCount / 2] + orderedValues[ElementsCount / 2 - 1]) / 2f
                 : orderedValues[ElementsCount / 2];
 
-            var j = (int)(ElementsCount / 2 - NormalDistributionQuantile * Math.Sqrt(ElementsCount) / 2);
-            var k = (int)(ElementsCount / 2 + 1 + NormalDistributionQuantile * Math.Sqrt(ElementsCount) / 2);
+            var j = (int)(ElementsCount / 2 - Constants.NormalDistributionQuantile * Math.Sqrt(ElementsCount) / 2);
+            var k = (int)(ElementsCount / 2 + 1 + Constants.NormalDistributionQuantile * Math.Sqrt(ElementsCount) / 2);
 
             _medianTrustInterval = (orderedValues[j], orderedValues[k]);
         }

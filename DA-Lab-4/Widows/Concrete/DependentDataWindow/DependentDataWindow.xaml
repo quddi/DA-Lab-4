@@ -5,13 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DA_Lab_4"
         mc:Ignorable="d"
-        Title="DependentDataWindow" Height="450" Width="800">
+        Title="DependentDataWindow" Height="313" Width="800">
     <Grid>
-        <Button x:Name="CheckMeansEqualityButton" Content="Перевірити рівність середніх" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="CheckMeansEqualityButtonClick"/>
-        <Button x:Name="CheckVariancesEqualityButton" Content="Перевірити рівність дисперсій" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="CheckVariancesEqualityButton_Click"/>
         <Button x:Name="ShowXDatasWindowButton" Content="Інформація про першу вибірку" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="ShowXDatasWindowButtonClick"/>
         <Button x:Name="ShowYDatasWindowButton" Content="Інформація про другу вибірку" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="ShowYDatasWindowButtonClick"/>
         <Button x:Name="ShowDifferencesDatasWindowButton" Content="Інформація про різницю вибірок" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Height="36" Width="201" Click="ShowDifferencesDatasWindowButtonClick"/>
+        <Rectangle x:Name="MeanVariancePanelBackground" HorizontalAlignment="Left" Height="119" Margin="10,135,0,0" VerticalAlignment="Top" Width="376" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+        <CheckBox x:Name="MeansEqualityCheckbox" Content="Критерій рівності середніх" HorizontalAlignment="Left" Margin="24,208,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="VariancesEqualityCheckbox" Content="Критерій рівності дисперсій" HorizontalAlignment="Left" Margin="24,158,0,0" VerticalAlignment="Top"/>
+        <Rectangle x:Name="VariancesEqualityBackground" HorizontalAlignment="Left" Height="32" Margin="210,150,0,0" VerticalAlignment="Top" Width="167" Fill="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+        <TextBlock x:Name="VariancesEqualityValuesText" HorizontalAlignment="Left" Margin="217,158,0,0" TextWrapping="Wrap" Text="|-1.135432| &lt; 16.189932 " VerticalAlignment="Top" TextAlignment="Center"/>
+        <Rectangle x:Name="MeansEqualityBackground" HorizontalAlignment="Left" Height="54" Margin="210,189,0,0" VerticalAlignment="Top" Width="167" Fill="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+        <TextBlock x:Name="MeansEqualityValuesText" HorizontalAlignment="Left" Margin="217,199,0,0" TextWrapping="Wrap" Text="|-1.135432| &lt; 16.189932 " VerticalAlignment="Top" TextAlignment="Center"/>
+        <CheckBox x:Name="WelchCorrectionCheckbox" Content="З поправою Уелча" HorizontalAlignment="Left" Margin="217,221,0,0" VerticalAlignment="Top"/>
+        <Rectangle HorizontalAlignment="Left" Height="118" Margin="219,10,0,0" VerticalAlignment="Top" Width="552" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+        <TextBox x:Name="EqualityTypeText" HorizontalAlignment="Left" Margin="320,10,0,0" TextWrapping="Wrap" Text="Вибірки розподілені нормально, тому застосовано критерій перевірки середніх і дисперсій" VerticalAlignment="Top" Width="350" Background="{x:Null}" BorderBrush="{x:Null}" Height="118" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Focusable="False" IsHitTestVisible="False"/>
+        <Rectangle x:Name="VilcocsonPanelBackground" HorizontalAlignment="Left" Margin="395,135,0,0" Width="376" Fill="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Height="119" VerticalAlignment="Top"/>
+        <CheckBox x:Name="VilcocsonCriteriaCheckbox" Content="Критерій знакових рангів Вілкоксона" HorizontalAlignment="Left" Margin="471,158,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="VilcocsonCriteriaValuesText" HorizontalAlignment="Left" Margin="411,193,0,0" TextWrapping="Wrap" Text="|-1.135432| &lt; 16.189932 " VerticalAlignment="Top" Width="344" Background="{x:Null}" Height="50" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsHitTestVisible="False" Focusable="False"/>
 
     </Grid>
 </Window>
