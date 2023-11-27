@@ -87,7 +87,7 @@ namespace DA_Lab_4
             var s6_3 = delta4 * (9 * normalQuantile5 - 284 * normalQuantile3 - 1513 * normalQuantile) / (155520 * sigma * sigma);
             var s6 = sigmaHalfSqrt * (s6_1 + s6_2 + s6_3);
 
-            return s1 + s2 + s3 + s4 + s5 + s6;
+            return Math.Exp((s1 + s2 + s3 + s4 + s5 + s6) * 2);
         }
 
         private static double QuantileT(double a)

@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\Specifics\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Widows\Concrete\DatasWindow\CharacteristicsBackground.png" />
   </ItemGroup>
 

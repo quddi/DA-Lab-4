@@ -123,7 +123,10 @@ namespace DA_Lab_4
 
         private void ComputePairedTTest()
         {
-            _pairedTTest = DifferencesDataContainer.Mean * Math.Sqrt(ElementsCount) / DifferencesDataContainer.StandardDeviation;
+            _pairedTTest = DifferencesDataContainer.Datas.All(value => value.IsEqual(0)) 
+                ? 0 
+                : DifferencesDataContainer.Mean * Math.Sqrt(ElementsCount) / 
+                    DifferencesDataContainer.StandardDeviation;
         }
 
         private void ComputeFTest()

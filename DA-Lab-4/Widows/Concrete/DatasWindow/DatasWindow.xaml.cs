@@ -78,10 +78,10 @@ namespace DA_Lab_4
             KurtosisCoefficientTextBox.Text = _dataContainer.SecondKurtosisCoefficient.ToFormattedString();
             KurtosisCoefficientIntervalTextBox.Text = _dataContainer.SecondKurtosisCoefficientTrustInterval.ToFormattedString();
 
-            StudentQuantileText.Text = $"u = {_dataContainer.StudentQuantile}";
+            StudentQuantileText.Text = $"u = {Constants.NormalDistributionQuantile}";
 
-            var normalDistributionIdentifiedBySkewness = Math.Abs(_dataContainer.SkewnessStatistics) < _dataContainer.StudentQuantile;
-            var normalDistributionIdentifiedByKurtosis = Math.Abs(_dataContainer.KurtosisStatistics) < _dataContainer.StudentQuantile;
+            var normalDistributionIdentifiedBySkewness = Math.Abs(_dataContainer.SkewnessStatistics) < Constants.NormalDistributionQuantile;
+            var normalDistributionIdentifiedByKurtosis = Math.Abs(_dataContainer.KurtosisStatistics) < Constants.NormalDistributionQuantile;
 
             NormalDistributionBySkewnessCheckbox.IsChecked = normalDistributionIdentifiedBySkewness;
             NormalDistributionBySkewnessCheckbox.Content = $"За коефіцієнтом ексцесу (s = {_dataContainer.SkewnessStatistics.ToFormattedString()})";

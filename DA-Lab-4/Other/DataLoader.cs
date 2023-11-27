@@ -69,6 +69,24 @@ namespace DA_Lab_4
                 MessageBox.Show($"Помилка при зчитуванні файлу: {ex.Message}");
             }
 
+            using (var fileStream = new StreamWriter(@"Dependent\x.txt"))
+            {
+                for (int i = 0; i < resultX.Count; i++)
+                {
+                    double item = resultX[i];
+                    fileStream.WriteLine(item);
+                }
+            }
+
+            using (var fileStream = new StreamWriter(@"Dependent\y.txt"))
+            {
+                for (int i = 0; i < resultY.Count; i++)
+                {
+                    double item = resultY[i];
+                    fileStream.WriteLine(item);
+                }
+            }
+
             return (resultX, resultY);
         }
 
@@ -111,6 +129,24 @@ namespace DA_Lab_4
             catch (Exception ex)
             {
                 MessageBox.Show($"Помилка при зчитуванні файлу: {ex.Message}");
+            }
+
+            using (var fileStream = new StreamWriter(@"Independent\x.txt"))
+            {
+                for (int i = 0; i < resultX.Count; i++)
+                {
+                    double item = resultX[i];
+                    fileStream.WriteLine(item);
+                }
+            }
+
+            using (var fileStream = new StreamWriter(@"Independent\y.txt"))
+            {
+                for (int i = 0; i < resultY.Count; i++)
+                {
+                    double item = resultY[i];
+                    fileStream.WriteLine(item);
+                }
             }
 
             return (resultX, resultY);

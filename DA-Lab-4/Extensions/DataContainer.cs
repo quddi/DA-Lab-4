@@ -410,8 +410,8 @@ namespace DA_Lab_4
         private void ComputeIsNormalDistributed()
         {
             _isNormalDistributed =
-                Math.Abs(SkewnessStatistics) < StudentQuantile &&
-                Math.Abs(KurtosisStatistics) < StudentQuantile;
+                Math.Abs(SkewnessStatistics) < Constants.NormalDistributionQuantile &&
+                Math.Abs(KurtosisStatistics) < Constants.NormalDistributionQuantile;
         }
         #endregion
     }

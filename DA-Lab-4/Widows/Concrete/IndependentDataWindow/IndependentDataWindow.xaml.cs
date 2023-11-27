@@ -54,17 +54,20 @@ namespace DA_Lab_4
                 MeanVariancePanelBackground.Fill = new SolidColorBrush(Constants.ActiveColor);
 
                 //Set info
-                var variancesFits = Math.Abs(_dataContainer.FTest) < _dataContainer.FisherQuantile;
-                VariancesEqualityValuesText.Text = $"|{_dataContainer.FTest.ToFormattedString()}| < {_dataContainer.FisherQuantile.ToFormattedString()}";
+                var variancesFits = _dataContainer.FTest.IsLessOrEqual(_dataContainer.FisherQuantile);
+                VariancesEqualityValuesText.Text = $"{_dataContainer.FTest.ToFormattedString()} <= {_dataContainer.FisherQuantile.ToFormattedString()}";
                 VariancesEqualityBackground.Fill = new SolidColorBrush(variancesFits ? Constants.OkColor : Constants.NotOkColor);
                 VariancesEqualityCheckbox.IsChecked = variancesFits;
 
                 var withWelchCorrection = !variancesFits;
 
-                var test = withWelchCorrection ? _dataContainer.WelchTTest : _dataContainer.TwoSampleTTest;
+                WelchCorrectionCheckbox.IsChecked = withWelchCorrection;
 
-                var meanFits = Math.Abs(test) < _dataContainer.StudentQuantile;
-                MeansEqualityValuesText.Text = $"|{test.ToFormattedString()}| < {_dataContainer.StudentQuantile.ToFormattedString()}";
+                var test = withWelchCorrection ? _dataContainer.WelchTTest : _dataContainer.TwoSampleTTest;
+                var studentQuantile = withWelchCorrection ? _dataContainer.WelchStudentQuantile : _dataContainer.StudentQuantile;
+
+                var meanFits = Math.Abs(test) < studentQuantile;
+                MeansEqualityValuesText.Text = $"|{test.ToFormattedString()}| < {studentQuantile.ToFormattedString()}";
                 MeansEqualityBackground.Fill = new SolidColorBrush(meanFits ? Constants.OkColor : Constants.NotOkColor);
                 MeansEqualityCheckbox.IsChecked = meanFits;
             }

@@ -35,9 +35,6 @@ namespace DA_Lab_4
 
             VilcocsonCriteriaCheckbox.IsHitTestVisible = false;
             VilcocsonCriteriaCheckbox.Focusable = false;
-
-            WelchCorrectionCheckbox.IsHitTestVisible = false;
-            WelchCorrectionCheckbox.Focusable = false;
         }
 
         private void FillInfo()
@@ -56,8 +53,8 @@ namespace DA_Lab_4
                 MeanVariancePanelBackground.Fill = new SolidColorBrush(Constants.ActiveColor);
 
                 //Set info
-                var variancesFits = Math.Abs(_dataContainer.FTest) < _dataContainer.FisherQuantile;
-                VariancesEqualityValuesText.Text = $"|{_dataContainer.FTest.ToFormattedString()}| < {_dataContainer.FisherQuantile.ToFormattedString()}";
+                var variancesFits = _dataContainer.FTest.IsLessOrEqual(_dataContainer.FisherQuantile);
+                VariancesEqualityValuesText.Text = $"{_dataContainer.FTest.ToFormattedString()} < {_dataContainer.FisherQuantile.ToFormattedString()}";
                 VariancesEqualityBackground.Fill = new SolidColorBrush(variancesFits ? Constants.OkColor : Constants.NotOkColor);
                 VariancesEqualityCheckbox.IsChecked = variancesFits;
 

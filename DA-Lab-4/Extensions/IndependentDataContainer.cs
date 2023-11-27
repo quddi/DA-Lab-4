@@ -11,7 +11,8 @@ namespace DA_Lab_4
         private double? _twoSampleTTest;
         private double? _studentQuantile;
         private double? _fisherQuantile;
-        private double? _freedomDegree;
+        private double? _greatestFreedomDegree;
+        private double? _lowestFreedomDegree;
         private double? _fTest;
         private double? _welchTTest;
         private double? _welchStudentQuantile;
@@ -67,14 +68,25 @@ namespace DA_Lab_4
             }
         }
 
-        public double FreedomDegree
+        public double GreatestFreedomDegree
         {
             get
             {
-                if (_freedomDegree == null)
-                    ComputeFreedomDegree();
+                if (_greatestFreedomDegree == null)
+                    ComputeGreatestFreedomDegree();
 
-                return _freedomDegree!.Value;
+                return _greatestFreedomDegree!.Value;
+            }
+        }
+
+        public double LowestFreedomDegree
+        {
+            get
+            {
+                if (_greatestFreedomDegree == null)
+                    ComputeLowestFreedomDegree();
+
+                return _greatestFreedomDegree!.Value;
             }
         }
 
@@ -111,7 +123,7 @@ namespace DA_Lab_4
             }
         }
 
-        public double WitchelFreedomDegreesCount
+        public double WelchFreedomDegreesCount
         {
             get
             {
@@ -220,12 +232,17 @@ namespace DA_Lab_4
 
         private void ComputeFisherQuantile()
         {
-            _fisherQuantile = Compute.FisherDistributionQuantile(1D - Constants.Alpha, FreedomDegree, FreedomDegree);
+            _fisherQuantile = Compute.FisherDistributionQuantile(1D - Constants.Alpha, GreatestFreedomDegree, LowestFreedomDegree);
         }
 
-        private void ComputeFreedomDegree()
+        private void ComputeGreatestFreedomDegree()
         {
-            _freedomDegree = ElementsCount - 1;
+            _greatestFreedomDegree = Math.Max(XDataContainer.ElementsCount, YDataContainer.ElementsCount) - 1;
+        }
+
+        private void ComputeLowestFreedomDegree()
+        {
+            _lowestFreedomDegree = Math.Min(XDataContainer.ElementsCount, YDataContainer.ElementsCount) - 1;
         }
 
         private void ComputeFTest()
@@ -242,7 +259,7 @@ namespace DA_Lab_4
 
         private void ComputeWelchStudentQuantile()
         {
-            _welchStudentQuantile = Compute.StudentDistributionQuantile(1D - Constants.Alpha / 2, WitchelFreedomDegreesCount);
+            _welchStudentQuantile = Compute.StudentDistributionQuantile(1D - Constants.Alpha / 2, WelchFreedomDegreesCount);
         }
 
         private void ComputeWelchFreedomDegreesCount()

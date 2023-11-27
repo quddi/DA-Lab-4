@@ -41,16 +41,6 @@ namespace DA_Lab_4
             else dictionary.Add(key, value);
         }
 
-        public static List<IData> ToGeneralDataList<T>(this IEnumerable<T> originEnumerable) where T : IData
-        {
-            return originEnumerable.Cast<IData>().ToList();
-        }
-
-        public static List<T> ToTemplateDataList<T>(this IEnumerable<IData> originEnumerable) where T : IData
-        {
-            return originEnumerable.Cast<T>().ToList();
-        }
-
         public static string ToFormattedString(this double value)
         {
             return value.ToString("0.000000");
