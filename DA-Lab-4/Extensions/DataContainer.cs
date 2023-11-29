@@ -362,7 +362,8 @@ namespace DA_Lab_4
 
         private void ComputeSecondKurtosisCoefficient()
         {
-            _secondKurtosisCoefficient = (FirstKurtosisCoefficient + 6.0 / (ElementsCount + 1)) * ((ElementsCount * ElementsCount - 1) / ((ElementsCount - 2) * (ElementsCount - 3)));
+            _secondKurtosisCoefficient = (FirstKurtosisCoefficient + 6.0 / (ElementsCount + 1)) 
+                * ((ElementsCount * ElementsCount - 1) / ((ElementsCount - 2) * (ElementsCount - 3)));
 
             _secondKurtosisCoefficientSigma = Compute.KurtosisCoefficientRootMeanSquareDeviation(ElementsCount);
 

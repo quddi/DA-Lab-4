@@ -119,8 +119,13 @@ namespace DA_Lab_4
             return Math.Sqrt(
             (24.0 * N * (N - 1) * (N - 1))
             /
-            (((double)N - 3) * (N - 2) * (N + 3) * (N + 5))
-            );
+            (N - 3D)
+            /
+            (N - 2D)
+            /
+            (N + 3D)
+            /
+            (N + 5D));
         }
 
         public static double G1(double uP)
